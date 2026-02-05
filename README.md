@@ -9,8 +9,10 @@ Do NOT use it directly without running the initialization steps.
 
 ## After cloning, you MUST init project (by help of init_project.sh file in root folder)
 
-## STEP 1  Run this command
-./init_project.sh "My App" com.company.myapp
+
+## STEP 1  Run this command in terminal in root directory
+1. chmod +x init_project.sh
+2. ./init_project.sh "My App" com.company.myapp
 
 --------------------------------------------
 What this script does internally:
@@ -49,7 +51,11 @@ If init_project.sh ran successfully, no manual edits are required.
 
 ## STEP 3 Remove pubspec.lock from gitignore
 
-## STEP 4 — Create a new Git repository
+## STEP 4 — Change root folder name and all imports
+
+
+
+## STEP 5 — Create a new Git repository
 git init
 git remote add origin ...
 git add .
@@ -58,8 +64,8 @@ git add .
 git commit -m "init"
 git push -u origin main
 
-## STEP 5 Create .env file like .env.example
+## STEP 6 Create .env file like .env.example
 
-## STEP 6 — Run the application
+## STEP 7 — Run the application
 
-## STEP 7 Initialize fvm if you want 
+## STEP 8 Initialize fvm if you want 
