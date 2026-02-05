@@ -52,7 +52,9 @@ If init_project.sh ran successfully, no manual edits are required.
 ## STEP 3 Remove pubspec.lock from gitignore
 
 ## STEP 4 — Change root folder name and all imports
-
+# copy this command and paste change my_app  
+grep -rl "package:bloc_clean_architecture_template" lib \
+| xargs sed -i '' 's/package:bloc_clean_architecture_template/package:my_app/g'
 
 
 ## STEP 5 — Create a new Git repository
