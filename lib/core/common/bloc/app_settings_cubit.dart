@@ -1,9 +1,8 @@
 
+import 'package:bloc_clean_architecture_template/core/common/entities/entities.dart';
+import 'package:bloc_clean_architecture_template/core/services/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../services/services.dart';
-import '../entities/entities.dart';
 
 @injectable
 class AppSettingsCubit extends Cubit<AppSettingEntity> {

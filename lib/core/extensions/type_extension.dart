@@ -12,10 +12,10 @@ extension StringExtension on String? {
 extension BooleanEx on bool? {
 
    bool notNullAndTrue(){
-    return this != null && this! == true;
+    return this != null && this!;
   }
 
   bool notNullAndFalse(){
-    return this != null && this! == false;
+    return this != null && !this!;
   }
 }

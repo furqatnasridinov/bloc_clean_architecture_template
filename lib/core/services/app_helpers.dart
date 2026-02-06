@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../extensions/context_extension.dart';
+import 'package:bloc_clean_architecture_template/core/extensions/context_extension.dart';
 
 class AppHelpers {
   AppHelpers._();
@@ -11,7 +11,7 @@ class AppHelpers {
   ) {
     return showAdaptiveDialog<bool>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return AlertDialog(
           backgroundColor: context.theme.cardColor,
           title: Text(
@@ -30,7 +30,7 @@ class AppHelpers {
               onPressed: () {
                 Navigator.of(context).pop(false); // Stay on the page
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               style: TextButton.styleFrom(
@@ -39,7 +39,7 @@ class AppHelpers {
               onPressed: () {
                 Navigator.of(context).pop(true); // Confirm closing
               },
-              child: Text('Confirm'),
+              child: const Text('Confirm'),
             ),
           ],
         );

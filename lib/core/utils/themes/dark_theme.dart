@@ -15,7 +15,7 @@ final ThemeData darkTheme = ThemeData(
     foregroundColor: Colors.white,
   ),
 
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     labelSmall: TextStyle(color: Colors.white, fontSize: 12),
     labelMedium: TextStyle(
       fontWeight: FontWeight.w200,

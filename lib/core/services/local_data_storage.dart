@@ -20,7 +20,7 @@ class LocalDataStorage {
   }
 
   static String getString(String key) {
-    return _preferences?.getString(key) ?? "";
+    return _preferences?.getString(key) ?? '';
   }
 
   static Future<void> setInt(String key, int value) async {

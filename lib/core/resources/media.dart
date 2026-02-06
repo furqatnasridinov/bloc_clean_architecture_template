@@ -17,7 +17,7 @@ class Media {
   static const _baseLottie = 'assets/lottie';
 
   //images
-
+  
   // lottie
 
 

@@ -3,7 +3,7 @@ import 'package:bloc_clean_architecture_template/core/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../common/screens/screens.dart';
+import 'package:bloc_clean_architecture_template/core/common/screens/screens.dart';
 
 
 part 'observer.router.dart';

@@ -1,7 +1,8 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-//import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 
 class DioHttpClient {
@@ -71,4 +72,3 @@ class RequestInterceptor extends Interceptor {
     return handler.next(err);
   }
 }
-

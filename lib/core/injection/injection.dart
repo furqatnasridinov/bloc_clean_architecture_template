@@ -1,11 +1,11 @@
+import 'package:bloc_clean_architecture_template/core/injection/injection.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'injection.config.dart';
 
-final sl = GetIt.instance;
+final GetIt sl = GetIt.instance;
 
 @InjectableInit(
-  initializerName: 'init',
-  preferRelativeImports: false,
+  //initializerName: 'init',
+  //preferRelativeImports: false,
 )
 Future<void> initDependencies() async => sl.init();

@@ -17,8 +17,8 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
 
-  void _setDarkTheme(bool value){
-    context.read<AppSettingsCubit>().setIsDarkThemeState(
+  Future<void> _setDarkTheme(bool value) async {
+    await context.read<AppSettingsCubit>().setIsDarkThemeState(
       valueIsDarkTheme: value,
     );
   }

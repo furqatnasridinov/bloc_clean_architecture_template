@@ -8,7 +8,6 @@ final ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   colorScheme: ColorScheme.fromSeed(
     seedColor: Colors.blue, // Generates a harmonized color scheme
-    brightness: Brightness.light,
   ),
   // Define other properties like appBarTheme, button themes, etc.
   appBarTheme: const AppBarTheme(
@@ -16,7 +15,7 @@ final ThemeData lightTheme = ThemeData(
     foregroundColor: Colors.white,
   ),
 
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     labelSmall: TextStyle(color: Colors.white, fontSize: 12),
     labelMedium: TextStyle(
       fontWeight: FontWeight.w200,

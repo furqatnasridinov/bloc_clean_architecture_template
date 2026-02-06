@@ -14,10 +14,10 @@ class SlideRouteTransition extends CustomTransitionPage<void> {
           reverseTransitionDuration: hideReverseAnimation ? Duration.zero : 
             const Duration(milliseconds: 200),
           transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
+            context,
+            animation,
+            secondaryAnimation,
+            child,
           ) {
             // if animation is reverse, return child without animation
             if (animation.status == AnimationStatus.reverse && hideReverseAnimation) {
@@ -55,10 +55,10 @@ class SlideUpRouteTransition extends CustomTransitionPage<void> {
   }) : super(
           transitionDuration: const Duration(milliseconds: 500),
           transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
+            context,
+            animation,
+            secondaryAnimation,
+            child,
           ) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -86,10 +86,10 @@ class FadeRouteTransition extends CustomTransitionPage<dynamic> {
     required super.child,
   }) : super(
           transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
+            context,
+            animation,
+            secondaryAnimation,
+            child,
           ) {
             return FadeTransition(
               opacity: animation,
@@ -113,10 +113,10 @@ class DualSlideRouteTransition extends CustomTransitionPage<void> {
   }) : super(
           child: Container(),
           transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
+            context,
+            animation,
+            secondaryAnimation,
+            child,
           ) {
             return Stack(
               children: <Widget>[

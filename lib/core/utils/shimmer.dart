@@ -125,29 +125,29 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
   int _count = 0;
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
     _controller = AnimationController(vsync: this, duration: widget.period)
-      ..addStatusListener((AnimationStatus status) {
+      ..addStatusListener((status) async {
         if (status != AnimationStatus.completed) {
           return;
         }
         _count++;
         if (widget.loop <= 0) {
-          _controller.repeat();
+          await _controller.repeat();
         } else if (_count < widget.loop) {
-          _controller.forward(from: 0);
+          await _controller.forward(from: 0);
         }
       });
     if (widget.enabled) {
-      _controller.forward();
+      await _controller.forward();
     }
   }
 
   @override
-  void didUpdateWidget(Shimmer oldWidget) {
+  Future<void> didUpdateWidget(Shimmer oldWidget) async {
     if (widget.enabled) {
-      _controller.forward();
+      await _controller.forward();
     } else {
       _controller.stop();
     }
@@ -159,7 +159,7 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
     return AnimatedBuilder(
       animation: _controller,
       child: widget.child,
-      builder: (BuildContext context, Widget? child) => _Shimmer(
+      builder: (context, child) => _Shimmer(
         direction: widget.direction,
         gradient: widget.gradient,
         percent: _controller.value,
@@ -194,9 +194,10 @@ class _Shimmer extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(BuildContext context, _ShimmerFilter shimmer) {
-    shimmer.percent = percent;
-    shimmer.gradient = gradient;
-    shimmer.direction = direction;
+    shimmer
+    ..percent = percent
+    ..gradient = gradient
+    ..direction = direction;
   }
 }
 

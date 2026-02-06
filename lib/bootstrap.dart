@@ -2,11 +2,10 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc_clean_architecture_template/core/injection/injection.dart';
+import 'package:bloc_clean_architecture_template/core/services/local_data_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
-import 'core/services/local_data_storage.dart';
 
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder,
