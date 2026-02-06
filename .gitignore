@@ -53,3 +53,6 @@ pubspec.lock
 .idea/
 .vscode/
 *.iml
+
+# Local Documents (txt, md ...)
+LOCAL_DOCS/

@@ -1,4 +1,3 @@
-import 'package:bloc_clean_architecture_template/core/common/screens/settings_screen.dart';
 import 'package:bloc_clean_architecture_template/core/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -43,10 +42,10 @@ class AppRouter {
 
       //settings screen 
       GoRoute(
-        path: SettingsScreen.path,
-        name: SettingsScreen.name,
+        path: ThemeSettingsScreen.path,
+        name: ThemeSettingsScreen.name,
         pageBuilder: (context, state) =>
-            const NoTransitionPage(child: SettingsScreen()),
+            const NoTransitionPage(child: ThemeSettingsScreen()),
       ),
 
     ],

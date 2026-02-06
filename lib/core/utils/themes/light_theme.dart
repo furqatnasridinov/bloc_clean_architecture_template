@@ -1,9 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 
 final ThemeData lightTheme = ThemeData(
-  //fontFamily: 'Roboto',
+  fontFamily: 'Inter',
   brightness: Brightness.light, // Sets the overall brightness
   scaffoldBackgroundColor: Colors.white,
   colorScheme: ColorScheme.fromSeed(
@@ -15,51 +13,86 @@ final ThemeData lightTheme = ThemeData(
     foregroundColor: Colors.white,
   ),
 
+  // Material 3 like
   textTheme: const TextTheme(
-    labelSmall: TextStyle(color: Colors.white, fontSize: 12),
-    labelMedium: TextStyle(
-      fontWeight: FontWeight.w200,
-      fontSize: 14,
-    ),
-    labelLarge: TextStyle(
+
+    // Display: Самые крупные шрифты на экране
+    displayLarge: TextStyle(
+      fontSize: 57,
       fontWeight: FontWeight.w400,
-      fontSize: 16,
+      letterSpacing: -0.25,
     ),
-    titleSmall: TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 12,
+    displayMedium: TextStyle(
+      fontSize: 45,
+      fontWeight: FontWeight.w400,
     ),
-    titleMedium: TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 14,
+    displaySmall: TextStyle(
+      fontSize: 36,
+      fontWeight: FontWeight.w400,
     ),
-    titleLarge: TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 16,
-    ),
-    bodySmall: TextStyle(
-      fontWeight: FontWeight.normal,
-      fontSize: 12,
-    ),
-    bodyMedium: TextStyle(
-      fontWeight: FontWeight.normal,
-      fontSize: 14,
-    ),
-    bodyLarge: TextStyle(
-      fontWeight: FontWeight.normal,
-      fontSize: 16,
-    ),
-    headlineSmall: TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 16,
+
+    // Headline: Заголовки разделов
+    headlineLarge: TextStyle(
+      fontSize: 32,
+      fontWeight: FontWeight.w400,
     ),
     headlineMedium: TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 18,
+      fontSize: 28,
+      fontWeight: FontWeight.w400,
     ),
-    headlineLarge: TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 20,
+    headlineSmall: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w400,
+    ),
+
+    // Title: Заголовки карточек, диалогов, аппбаров
+    titleLarge: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w400,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.15,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.1,
+    ),
+
+    // Body: Основной текст
+    bodyLarge: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.5,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.25,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.4,
+    ),
+
+    // Label: Подписи кнопок, инпутов, маленькие пометки
+    labelLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.1,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.5,
+    ),
+    labelSmall: TextStyle(
+      fontSize: 11,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.5,
     ),
   ),
 );
