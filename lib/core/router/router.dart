@@ -48,6 +48,13 @@ class AppRouter {
             const NoTransitionPage(child: ThemeSettingsScreen()),
       ),
 
+      GoRoute(
+        path: SnackbarCustomizationScreen.path,
+        name: SnackbarCustomizationScreen.name,
+        pageBuilder: (context, state) =>
+            const NoTransitionPage(child: SnackbarCustomizationScreen()),
+      ),
+
     ],
   );
 }

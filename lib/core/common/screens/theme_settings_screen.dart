@@ -34,7 +34,9 @@ class _ThemeSettingsScreenState extends State<ThemeSettingsScreen> {
         child: Column(
           spacing: 5,
           children: [
-            Text(context.textTheme.bodyLarge?.fontFamily ?? ''),
+            Text(
+              'Font Family ${context.textTheme.bodyLarge?.fontFamily ?? ''}',
+            ),
 
             // display 
             _textBlock(context.textTheme.displayLarge),

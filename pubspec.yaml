@@ -24,6 +24,8 @@ dependencies:
   shared_preferences: ^2.5.4
   logger: ^2.6.2
   flutter_dotenv: ^6.0.0
+  flutter_native_splash: ^2.4.7
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -66,3 +68,14 @@ flutter:
           weight: 800
         - asset: assets/fonts/Inter_w900.ttf
           weight: 900
+
+flutter_native_splash:
+  color: "#FFFFFF"     # just a plain white background
+  android: true
+  ios: true
+  web: false
+  fullscreen: true
+  android_12:
+    color: "#ffffff"
+    icon_background_color: "#ffffff" # Required for Android 12+
+    image: assets/splash_android12.png

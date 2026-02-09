@@ -4,7 +4,8 @@ import 'package:bloc_clean_architecture_template/core/common/entities/entities.d
 import 'package:bloc_clean_architecture_template/core/injection/injection.dart';
 import 'package:bloc_clean_architecture_template/core/router/router.dart';
 import 'package:bloc_clean_architecture_template/core/services/app_constants.dart';
-import 'package:bloc_clean_architecture_template/core/utils/themes/theme.dart';
+import 'package:bloc_clean_architecture_template/core/utils/themes/dark_theme.dart';
+import 'package:bloc_clean_architecture_template/core/utils/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,9 +30,7 @@ class MyApp extends StatelessWidget {
             title: AppConstants.appName,
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.routerConfig,
-            theme: state.isDarkTheme
-                ? appThemeData[AppTheme.dark]
-                : appThemeData[AppTheme.light],
+            theme: state.isDarkTheme ? darkTheme : lightTheme
           );
         },
       ),

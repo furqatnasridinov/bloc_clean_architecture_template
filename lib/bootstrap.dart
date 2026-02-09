@@ -6,12 +6,17 @@ import 'package:bloc_clean_architecture_template/core/services/local_data_storag
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder,
 ) async {
 
-  WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
+
+  // show splash while initing dependencies
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -30,7 +35,7 @@ Future<void> bootstrap(
   await initializations();
 
   //remove flutter splash screen after initializations
-  //FlutterNativeSplash.remove();
+  FlutterNativeSplash.remove();
 
   runApp(await builder());
 }
