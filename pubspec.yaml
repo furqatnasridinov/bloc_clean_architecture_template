@@ -26,6 +26,7 @@ dependencies:
   flutter_dotenv: ^6.0.0
   flutter_native_splash: ^2.4.7
   flutter_launcher_icons: ^0.14.4
+  lottie: ^3.3.2
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +47,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+    - assets/lottie/
     - .env
 
   

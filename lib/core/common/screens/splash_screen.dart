@@ -1,7 +1,9 @@
 import 'package:bloc_clean_architecture_template/core/common/screens/screens.dart';
+import 'package:bloc_clean_architecture_template/core/resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,53 +15,52 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  bool animate = false;
-  final int animationInSeconds = 1;
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
 
-  
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) {
-        animate = true;
-        setState(() {});
-      },
-    );
-
-    _navigateWithDelay(SnackbarCustomizationScreen.path);
+    _controller = AnimationController(vsync: this);
   }
 
-  void _navigateWithDelay(String location) {
-    Future.delayed(Duration(seconds: animationInSeconds + 1), () {
-      if (mounted) {
-        context.go(location);
-      }
-    });
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
-  
   @override
   Widget build(BuildContext context) {
     // color identical with flutter native splash`s color property
     const Color bgColor = Colors.white;
-    return   AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle( // works android only
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        // works android only
         statusBarColor: bgColor, // top
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: bgColor, // bottom
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
-      child:  Scaffold(
+      child: Scaffold(
         backgroundColor: bgColor,
         body: Center(
-          child: AnimatedScale(
-            duration:  Duration(seconds: animationInSeconds),
-            curve: Curves.easeInOut,
-            scale: !animate ? 1 : 7,
-            child: const FlutterLogo(
-              style: FlutterLogoStyle.stacked,
+          child: Transform.scale(
+            scale: 0.8,
+            child: Lottie.asset(
+              Media.rockLottie,
+              decoder: LottieComposition.decodeGZip,
+              controller: _controller,
+              onLoaded: (composition) async {
+                _controller
+                  ..duration = composition.duration
+                  ..forward().then(
+                    (value) {
+                      context.go(SnackbarCustomizationScreen.path);
+                    },
+                  );
+              },
             ),
           ),
         ),

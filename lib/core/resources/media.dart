@@ -24,4 +24,6 @@ class Media {
   // svgs
 
 
+  // lottie
+  static const rockLottie = '$_baseLottie/rock.tgs';
 }
