@@ -1,8 +1,6 @@
 import 'package:bloc_clean_architecture_template/core/services/services.dart';
 import 'package:flutter/material.dart';
 
-
-
 class SnackbarCustomizationScreen extends StatefulWidget {
   const SnackbarCustomizationScreen({super.key});
 
@@ -10,29 +8,49 @@ class SnackbarCustomizationScreen extends StatefulWidget {
   static const path = '/snackbarCustomizationScreen';
 
   @override
-  State<SnackbarCustomizationScreen> createState() => _SnackbarCustomizationScreenState();
+  State<SnackbarCustomizationScreen> createState() =>
+      _SnackbarCustomizationScreenState();
 }
 
-class _SnackbarCustomizationScreenState extends State<SnackbarCustomizationScreen> {
-  SnackBarBehavior? _snackBarBehavior = SnackBarBehavior.floating;
-  bool _withIcon = true;
-  bool _withAction = true;
-  bool _multiLine = false;
-  bool _longActionLabel = false;
-  double _sliderValue = 0.25;
+class _SnackbarCustomizationScreenState
+    extends State<SnackbarCustomizationScreen> {
+  TypeSnackBar? _snackBarType = TypeSnackBar.info;
+  late TextEditingController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController(text: 'Some text to show in Snackbar');
+  }
+
+  void _showSnack() {
+    switch (_snackBarType) {
+      case null:
+        throw UnimplementedError();
+      case TypeSnackBar.success:
+        AppSnackBar.showSuccess(
+          context: context,
+          message: controller.text,
+        );
+      case TypeSnackBar.error:
+        AppSnackBar.showError(
+          context,
+          message: controller.text,
+        );
+      case TypeSnackBar.info:
+        AppSnackBar.showInfo(
+          context,
+          message: controller.text,
+        );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('SnackBar Sample')),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          AppSnackBar.showInfo(
-            context,
-            message: 'Hello ',
-          );
-          //ScaffoldMessenger.of(context).showSnackBar(_snackBar());
-        },
+        onPressed: _showSnack,
         icon: const Icon(Icons.play_arrow),
         label: const Text('Show Snackbar'),
       ),
@@ -41,85 +59,99 @@ class _SnackbarCustomizationScreenState extends State<SnackbarCustomizationScree
           ExpansionTile(
             title: const Text('Behavior'),
             initiallyExpanded: true,
-            children: <Widget>[
-              RadioListTile<SnackBarBehavior>(
-                title: const Text('Fixed'),
-                value: SnackBarBehavior.fixed,
-                groupValue: _snackBarBehavior,
-                onChanged: (SnackBarBehavior? value) {
+            children: TypeSnackBar.values.map((e) {
+              return RadioListTile<TypeSnackBar>(
+                  title: Text(e.name),
+                  value: e,
+                  groupValue: _snackBarType,
+                  onChanged: (TypeSnackBar? value) {
+                    setState(() {
+                      _snackBarType = value;
+                    });
+                  },
+                );
+            },).toList(),
+            /* <Widget>[
+              RadioListTile<TypeSnackBar>(
+                title: Text(TypeSnackBar.info.name),
+                value: TypeSnackBar.info,
+                groupValue: _snackBarType,
+                onChanged: (TypeSnackBar? value) {
                   setState(() {
-                    _snackBarBehavior = value;
+                    _snackBarType = value;
                   });
                 },
               ),
-              RadioListTile<SnackBarBehavior>(
-                title: const Text('Floating'),
-                value: SnackBarBehavior.floating,
-                groupValue: _snackBarBehavior,
-                onChanged: (SnackBarBehavior? value) {
+              RadioListTile<TypeSnackBar>(
+                title: Text(TypeSnackBar.success.name),
+                value: TypeSnackBar.success,
+                groupValue: _snackBarType,
+                onChanged: (TypeSnackBar? value) {
                   setState(() {
-                    _snackBarBehavior = value;
+                    _snackBarType = value;
                   });
                 },
               ),
-            ],
+              RadioListTile<TypeSnackBar>(
+                title: Text(TypeSnackBar.error.name),
+                value: TypeSnackBar.error,
+                groupValue: _snackBarType,
+                onChanged: (TypeSnackBar? value) {
+                  setState(() {
+                    _snackBarType = value;
+                  });
+                },
+              ),
+            ], */
           ),
-          ExpansionTile(
-            title: const Text('Content'),
-            initiallyExpanded: true,
-            children: <Widget>[
-              SwitchListTile(
-                title: const Text('Include close Icon'),
-                value: _withIcon,
-                onChanged: (bool value) {
-                  setState(() {
-                    _withIcon = value;
-                  });
-                },
+
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: TextField(
+              controller: controller,
+              maxLines: null,
+              onChanged: (value) {
+                setState(() {
+                  
+                });
+              },
+              onTapOutside: (event) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              decoration: const InputDecoration(
+                counterStyle:  TextStyle(
+                  height: double.minPositive,
+                ),
+                counterText: '',
+                labelText: 'Snackbar message',
+                border: OutlineInputBorder(),
               ),
-              SwitchListTile(
-                title: const Text('Multi Line Text'),
-                value: _multiLine,
-                onChanged: (bool value) {
-                  setState(() {
-                    _multiLine = value;
-                  });
-                },
-              ),
-              SwitchListTile(
-                title: const Text('Include Action'),
-                value: _withAction,
-                onChanged: (bool value) {
-                  setState(() {
-                    _withAction = value;
-                  });
-                },
-              ),
-              SwitchListTile(
-                title: const Text('Long Action Label'),
-                value: _longActionLabel,
-                onChanged: !_withAction
-                    ? null
-                    : (bool value) => setState(() {
-                        _longActionLabel = value;
-                      }),
-              ),
-            ],
+            ),
           ),
-          ExpansionTile(
-            title: const Text('Action new-line overflow threshold'),
-            initiallyExpanded: true,
-            children: <Widget>[
-              Slider(
-                value: _sliderValue,
-                divisions: 20,
-                label: _sliderValue.toStringAsFixed(2),
-                onChanged: (double value) => setState(() {
-                  _sliderValue = value;
-                }),
-              ),
-            ],
+
+          Column(
+            children: TypeSnackBar.values.map(
+              (e) {
+                return Container(
+                  //height: 50,
+                  //constraints: const BoxConstraints(maxWidth: 350),
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                  decoration: BoxDecoration(
+                    //color: Colors.grey,
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: e.getGradient(),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 16,
+                  ),
+                  child: _body(e.getIconData()),
+                );
+              },
+            ).toList(),
           ),
+
           // Avoid hiding content behind the floating action button
           const SizedBox(height: 100),
         ],
@@ -127,29 +159,29 @@ class _SnackbarCustomizationScreenState extends State<SnackbarCustomizationScree
     );
   }
 
-  SnackBar _snackBar() {
-    final SnackBarAction? action = _withAction
-        ? SnackBarAction(
-            label: _longActionLabel ? 'Long Action Text' : 'Action',
-            onPressed: () {
-              // Code to execute.
-            },
-          )
-        : null;
-    final double? width = _snackBarBehavior == SnackBarBehavior.floating ? 400.0 : null;
-    final String label = _multiLine
-        ? 'A Snack Bar with quite a lot of text which spans across multiple '
-              'lines. You can look at how the Action Label moves around when trying '
-              'to layout this text.'
-        : 'Single Line Snack Bar';
-    return SnackBar(
-      content: Text(label),
-      showCloseIcon: _withIcon,
-      width: width,
-      behavior: _snackBarBehavior,
-      action: action,
-      duration: const Duration(seconds: 3),
-      actionOverflowThreshold: _sliderValue,
+  Widget _body(IconData icondata) {
+    return Center(
+      child: Row(
+        children: [
+           Icon(
+            icondata,
+            color: Colors.white,
+            size: 32,
+          ),
+          const SizedBox(width: 5),
+          Flexible(
+            child: Text(
+              controller.text,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

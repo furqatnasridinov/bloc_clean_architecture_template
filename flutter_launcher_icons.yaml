@@ -32,3 +32,7 @@ flutter_launcher_icons:
   #macos:
     #generate: true
     #image_path: "path/to/image.png"
+
+
+#flutter pub get
+#dart run flutter_launcher_icons -f flutter_launcher_icons.yaml

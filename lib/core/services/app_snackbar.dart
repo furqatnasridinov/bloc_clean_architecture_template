@@ -12,6 +12,36 @@ enum TypeSnackBar {
   /// Снекбар с информацией
   info,
 }
+extension ExtensionSnack on TypeSnackBar {
+
+  Gradient getGradient() {
+    return switch (this) {
+      TypeSnackBar.success => LinearGradient(
+        begin: Alignment.bottomLeft,
+        end: Alignment.bottomRight,
+        colors: [Colors.green.shade800, Colors.green.shade500],
+      ),
+      TypeSnackBar.error => LinearGradient(
+        begin: Alignment.bottomLeft,
+        end: Alignment.bottomRight,
+        colors: [Colors.deepOrange.shade500, Colors.red.shade400],
+      ),
+      TypeSnackBar.info => LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Colors.blueGrey.shade400, Colors.blueGrey.shade500],
+      ),
+    };
+  }
+
+  IconData getIconData() {
+    return switch (this) {
+      TypeSnackBar.success => Icons.task_alt,
+      TypeSnackBar.error => Icons.cancel,
+      TypeSnackBar.info => Icons.info,
+    };
+  }
+}
 
 /// {@template app_snackbar}
 /// Менеджер для управления снекбарами
@@ -229,8 +259,9 @@ class _AppSnackBarState extends State<AppSnackBar>
                 constraints: const BoxConstraints(maxWidth: 350),
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
-                  color: _getBackgroundColor(widget.type),
+                  //color: _getBackgroundColor(widget.type),
                   borderRadius: BorderRadius.circular(16),
+                  gradient: widget.type.getGradient()
                 ),
                 padding: const EdgeInsets.symmetric(
                   vertical: 12,
@@ -238,15 +269,19 @@ class _AppSnackBarState extends State<AppSnackBar>
                 ),
                 child: Row(
                   children: [
-                    _Icon(
-                      type: widget.type,
-                      iconData: widget.iconData,
+                    Icon(
+                      widget.iconData ?? widget.type.getIconData(),
+                      color: Colors.white,
+                      size: 32,
                     ),
                     const SizedBox(width: 5),
                     Flexible(
                       child: Text(
                         widget.message,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -265,57 +300,5 @@ class _AppSnackBarState extends State<AppSnackBar>
   /// Возвращает [Color] в зависимости от типа снекбара
   /// [TypeSnackBar.success] - цвет успеха
   /// [TypeSnackBar.error] - цвет ошибки
-  Color _getBackgroundColor(TypeSnackBar type) {
-    return switch (type) {
-      TypeSnackBar.success => Colors.green,
-      TypeSnackBar.error => Colors.red,
-      TypeSnackBar.info => Colors.grey,
-    };
-  }
-}
 
-/// {@template _Icon}
-/// Виджет для отображения иконки в снекбаре
-/// Используется для отображения иконки в зависимости от типа снекбара
-/// {@endtemplate}
-class _Icon extends StatelessWidget {
-  /// {@macro _Icon}
-  /// Создает экземпляр иконки для снекбара
-  /// Принимает [type] - тип снекбара, определяющий иконку
-  /// Используется для отображения иконки успеха или ошибки
-  const _Icon({
-    required this.type,
-    this.iconData,
-  });
-
-  /// Тип снекбара, определяющий иконку
-  final TypeSnackBar type;
-  final IconData? iconData;
-
-  @override
-  Widget build(BuildContext context) {
-    if (iconData != null) {
-      return Icon(
-        iconData,
-        color: Colors.white,
-        size: 32,);
-    }
-    return switch (type) {
-      TypeSnackBar.success => const Icon(
-          Icons.check_circle,
-          color: Colors.white,
-          size: 32,
-        ),
-      TypeSnackBar.error => const Icon(
-        Icons.error,
-        color: Colors.white,
-        size: 32,
-      ),
-      TypeSnackBar.info => const Icon(
-        Icons.info,
-        color: Colors.white,
-        size: 32,
-      ),
-    };
-  }
 }
