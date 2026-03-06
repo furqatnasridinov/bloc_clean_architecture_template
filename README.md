@@ -39,6 +39,8 @@ Check Android:
 
 # android/app/build.gradle → applicationId
 
+# android/app/src/main/kotlin/.../MainActivity.kt -> applicationId  (first line com.example.id)
+
 # android/app/src/main/AndroidManifest.xml → app label
 
 Check iOS:
